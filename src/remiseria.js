@@ -1,4 +1,5 @@
 export class Remiseria {
+ 
   vehiculos = []
   viajes = []
   minimoDeViaje = 30

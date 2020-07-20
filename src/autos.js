@@ -1,132 +1,155 @@
-export class ChevroletCorsa {
+class Auto {
+
     _color
-    constructor (color){
-      this._color = color
+    _peso
+    _capacidad
+    _velocidadMaxima
+
+    constructor(color, peso, capacidad, velocidadMaxima) {
+        this._color = color
+        this._peso = peso
+        this._capacidad = capacidad
+        this._velocidadMaxima = velocidadMaxima
     }
+
     capacidad() {
-        return 4
+        return this._capacidad
     }
+
     velocidadMaxima() {
-        return 150
+        return this._velocidadMaxima
     }
+
     peso() {
-       return 1300
+        return this._peso
     }
-    color(){
-      return this._color
+
+    color() {
+        return this._color
     }
 }
-export class AutoStandard {
+
+
+export class ChevroletCorsa extends Auto {
+
+    constructor(color) {
+        super(color, 1300, 4, 150)
+    }
+
+}
+export class AutoStandard extends Auto {
+
     _tanqueAdicional = new NullTanque()
-    _peso = 1200
-    _color = "gris"
-   agregarTanqueAdicional(){
-     this._tanqueAdicional = new Tanque() 
-   }
+
+    constructor(color) {
+        super(color, 1200)
+    }
+
+    agregarTanqueAdicional() {
+        this._tanqueAdicional = new Tanque()
+    }
 
     capacidad() {
         return this._tanqueAdicional.capacidad()
     }
+
     peso() {
         return this._peso + this._tanqueAdicional.peso()
     }
-    color(){
-      return this._color
+
+    color() {
+        return this._color
     }
-  velocidadMaxima() {
+
+    velocidadMaxima() {
         return this._tanqueAdicional.velocidadMaxima()
     }
 }
 
-export class Trafic {
+export class Trafic extends Auto {
     _interior
     _motor
-    _peso = 4000
+
     constructor(interior, motor) {
+        super("blanco", 4000)
         this._interior = interior
         this._motor = motor
     }
+
     capacidad() {
         return this._interior.capacidad()
     }
+
     velocidadMaxima() {
         return this._motor.velocidadMaxima()
     }
+
     peso() {
-        return this._peso + this._motor.peso() + this._interior.peso()
+        return super.peso() + this._motor.peso() + this._interior.peso()
     }
-    color(){
-        return "blanco"
-    }
+
 }
+
 export class Motor {
-    constructor(velocidad,peso) {
+
+    constructor(velocidad, peso) {
         this._velocidadMaxima = velocidad
-        this._peso  = peso 
+        this._peso = peso
     }
-   
+
     velocidadMaxima() {
         return this._velocidadMaxima
     }
+
     peso() {
         return this._peso
     }
 }
 
 export class Interior {
-    constructor(capacidad , peso) {
+
+    constructor(capacidad, peso) {
         this._capacidad = capacidad
-        this._peso  = peso 
+        this._peso = peso
     }
+
     capacidad() {
-        return this._capacidad 
+        return this._capacidad
     }
-   
+
     peso() {
         return this._peso
     }
 }
-export class NullTanque{
+
+export class NullTanque {
+  
     capacidad() {
         return 4
     }
+  
     velocidadMaxima() {
         return 120
     }
+  
     peso() {
         return 0
     }
 }
 export class Tanque {
-    
-   capacidad() {
-      return  3 
+
+    capacidad() {
+        return 3
     }
+  
     velocidadMaxima() {
         return 110
     }
+
     peso() {
         return 150
     }
 }
-export class AutoDistinto {
-    
-    constructor (color,capacidad,velocidadMaxima,peso){
-      this._color = color
-      this._capacidad = capacidad
-      this._peso = peso
-      this._velocidadMaxima = velocidadMaxima
-    }
-    capacidad() {
-        return this._capacidad
-    }
-    velocidadMaxima() {
-        return this._velocidadMaxima
-    }
-    peso() {
-       return this._peso
-    }
-    color(){
-      return this._color
-    }
+export class AutoDistinto extends Auto {
+
 }
