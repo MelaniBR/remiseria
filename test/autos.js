@@ -10,6 +10,7 @@ describe("vehiculos - configuraciones", () => {
         expect(chevrolet.velocidadMaxima()).to.equal(150)
         expect(chevrolet.capacidad()).to.equal(4)
         expect(chevrolet.peso()).to.equal(1300)
+        expect(chevrolet.color()).to.equal("rosa")
 
 
     })

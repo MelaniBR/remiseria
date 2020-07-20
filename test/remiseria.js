@@ -12,19 +12,16 @@ describe("Remiseria ", function () {
   var autoStandard 
   var chevrolet
   var pulenta
-  var trafic2
-  
+  var autoDistinto 
   beforeEach(() =>  {
   remiseria = new Remiseria()
-  trafic2 = new Trafic(popular ,bataton)
-  bataton = new Motor ( 80, 500)
   popular = new Interior (12, 1000)
   autoStandard = new AutoStandard()
   pulenta = new Motor ( 130,800)
   autoStandard.agregarTanqueAdicional()
   trafic = new Trafic(popular,pulenta)
   chevrolet = new ChevroletCorsa("rojo")
-  
+  autoDistinto = new AutoDistinto("beige" , 3 ,80 , 1000)
   })
 
 
@@ -46,7 +43,7 @@ describe("Remiseria ", function () {
     
   })
   it("Remiseria no es recomendable porque trafic no supera la velocidad de 100 ", () => {
-      remiseria.agregarFlota(trafic2)
+      remiseria.agregarFlota(autoDistinto)
       remiseria.agregarFlota(chevrolet)
       remiseria.agregarFlota(autoStandard)
       expect(remiseria.esRecomendable()).to.be.false;
@@ -59,5 +56,18 @@ describe("Remiseria ", function () {
       expect(remiseria.esRecomendable()).to.be.true;
     
       })
-   
+  it("Capacidad total , con una velocidad de 100", () =>  {
+      remiseria.agregarFlota(autoDistinto) // no cuenta 
+      remiseria.agregarFlota(chevrolet) // 4
+      remiseria.agregarFlota(autoStandard) //3
+      expect(remiseria.capacidadTotalYendoA(100)).to.equal(7)
+    
+      })
+    it("el color del auto mas rapido es rojo ", () =>  {
+      remiseria.agregarFlota(autoDistinto) 
+      remiseria.agregarFlota(chevrolet) 
+      
+      expect(remiseria.colorDelAutoMasRapido()).to.equal("rojo")
+    
+      })
 })
